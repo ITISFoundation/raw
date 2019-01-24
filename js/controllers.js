@@ -495,6 +495,24 @@ angular.module('raw.controllers', [])
         return [chart.category(),chart.title()];
       };
 
+
+    $scope.reloadInputs = () => {
+      $scope.inputs = [];
+      fsWeb.readdir('../inputs/', function(err, items) {
+        console.log(err);
+        console.log(items);
+        for (var i=0; i<items.length; i++) {
+          console.log(items[i]);
+        }
+      });
+      $scope.inputs.push({
+        title: 'Hello',
+        type: 'Other',
+        url: '../inputs/SalesJan2009.csv'
+      });
+    }
+
+
     $(document).ready(refreshScroll);
 
 
