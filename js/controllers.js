@@ -498,19 +498,33 @@ angular.module('raw.controllers', [])
 
     $scope.reloadInputs = () => {
       $scope.inputs = [];
-      fsWeb.readdir('../inputs/', function(err, items) {
-        console.log(err);
-        console.log(items);
-        for (var i=0; i<items.length; i++) {
-          console.log(items[i]);
-        }
-      });
+      // ask the server about the available files
       $scope.inputs.push({
         title: 'Hello',
         type: 'Other',
         url: '../inputs/SalesJan2009.csv'
       });
     }
+
+    $scope.selectInput = input => {
+      if (!input) {
+        return;
+      }
+      console.log(input);
+      // ask the server about the data itself
+      $scope.text = "";
+      $scope.loading = true;
+      dataService.loadSample(input.url).then(
+        data => {
+          $scope.text = data.replace(/\r/g, '');
+          $scope.loading = false;
+        },
+        error => {
+          $scope.error = error;
+          $scope.loading = false;
+        }
+      );
+    };
 
 
     $(document).ready(refreshScroll);

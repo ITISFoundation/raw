@@ -142,7 +142,7 @@
 						<!-- oSPARC inputs -->
 						<div ng-show="importMode=='osparc' && !parsed">
 							<div class="row">
-								<div class="col-lg-3" ng-repeat="s in inputs | orderBy : 'type'" ng-click="selectSample(s)">
+								<div class="col-lg-3" ng-repeat="i in inputs | orderBy : 'type'" ng-click="selectInput(i)">
 									<div class="layout">
 										<div class="layout-inner">
 											<span>{{s.title}}</span>
