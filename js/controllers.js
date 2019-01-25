@@ -499,11 +499,13 @@ angular.module('raw.controllers', [])
     $scope.reloadInputs = () => {
       $scope.inputs = [];
       // ask the server about the available files
-      $scope.inputs.push({
-        title: 'Hello',
-        type: 'Other',
-        url: '../inputs/SalesJan2009.csv'
-      });
+      $http.get('/inputs').
+        then(response => {
+          const files = response.data;
+          for (let i=0; i<files.length; i++) { 
+            $scope.inputs.push(files[i]);
+          }
+        });
     }
 
     $scope.selectInput = input => {
