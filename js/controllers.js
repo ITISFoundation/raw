@@ -512,20 +512,19 @@ angular.module('raw.controllers', [])
       if (!input) {
         return;
       }
-      console.log(input);
       // ask the server about the data itself
       $scope.text = "";
       $scope.loading = true;
-      dataService.loadSample(input.url).then(
-        data => {
-          $scope.text = data.replace(/\r/g, '');
-          $scope.loading = false;
-        },
-        error => {
-          $scope.error = error;
-          $scope.loading = false;
+      $http.get('/input', {
+        params: {
+          fileName: input.url
         }
-      );
+      }).
+        then(response => {
+          const file = response.data;
+          $scope.text = file.replace(/\r/g, '');
+          $scope.loading = false;
+        });
     };
 
 
