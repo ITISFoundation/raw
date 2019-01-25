@@ -496,6 +496,10 @@ angular.module('raw.controllers', [])
       };
 
 
+    /* ----------------- osparc ----------------- */
+    // $scope.importMode = 'osparc';
+    // $scope.reloadInputs();
+
     $scope.reloadInputs = () => {
       $scope.inputs = [];
       // ask the server about the available files
@@ -527,6 +531,8 @@ angular.module('raw.controllers', [])
         });
     };
 
+
+    /* ----------------- OSPARC ----------------- */
 
     $(document).ready(refreshScroll);
 
