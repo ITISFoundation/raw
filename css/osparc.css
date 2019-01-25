@@ -1,0 +1,40 @@
+body {
+    font-family: 'Roboto';
+}
+
+.text-mono {
+    font-family: 'Roboto';
+}
+
+.navbar-brand {
+    font-family: 'Roboto';
+}
+
+.text-clipboard {
+    font-family: 'Roboto';
+
+}
+
+.tooltip {
+    font-family: 'Roboto';
+}
+
+div[colors] .sample-color {
+    font-family: 'Roboto';
+}
+
+textarea.source-area {
+    font-family: 'Roboto';
+}
+
+.json-node {
+    font-family: 'Roboto';
+}
+
+.data-table {
+    font-family: 'Roboto';
+}
+
+.CodeMirror {
+    font-family: 'Roboto';
+}

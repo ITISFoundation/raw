@@ -495,6 +495,45 @@ angular.module('raw.controllers', [])
         return [chart.category(),chart.title()];
       };
 
+
+    /* ----------------- osparc ----------------- */
+    // $scope.importMode = 'osparc';
+    // $scope.reloadInputs();
+
+    $scope.reloadInputs = () => {
+      $scope.inputs = [];
+      // ask the server about the available files
+      $http.get('/inputs').
+        then(response => {
+          const files = response.data;
+          for (let i=0; i<files.length; i++) { 
+            $scope.inputs.push(files[i]);
+          }
+        });
+    }
+
+    $scope.selectInput = input => {
+      if (!input) {
+        return;
+      }
+      // ask the server about the data itself
+      $scope.text = "";
+      $scope.loading = true;
+      $http.get('/input', {
+        params: {
+          fileName: input.url
+        }
+      }).
+        then(response => {
+          const file = response.data;
+          $scope.text = file.replace(/\r/g, '');
+          $scope.loading = false;
+        });
+    };
+
+
+    /* ----------------- OSPARC ----------------- */
+
     $(document).ready(refreshScroll);
 
 

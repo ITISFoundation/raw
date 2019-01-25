@@ -48,6 +48,7 @@
 				      <li role="presentation" ng-class="{active:!parsed && importMode=='file'}"><a href="#" ng-click="parsed=false;importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li>
 				      <li role="presentation" ng-class="{active:!parsed && importMode=='url'}"><a href="#" ng-click="parsed=false;importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
 							<li role="presentation" ng-class="{active:!parsed && importMode=='sample'}"><a href="#" ng-click="parsed=false;importMode='sample'"><i class="fa fa-gift breath-right"></i>Try our samples</a></li>
+							<li role="presentation" ng-class="{active:!parsed && importMode=='osparc'}"><a href="#" ng-click="parsed=false;importMode='osparc';reloadInputs()"><i class="fa fa-gift breath-right"></i>oSPARC inputs</a></li>
 				    </ul>
 
 					</div>
@@ -133,6 +134,19 @@
 										<div class="layout-inner">
 											<span>{{s.title}}</span>
 											<span class="text-muted layout-category">{{s.type}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- oSPARC inputs -->
+						<div ng-show="importMode=='osparc' && !parsed">
+							<div class="row">
+								<div class="col-lg-3" ng-repeat="i in inputs | orderBy : 'type'" ng-click="selectInput(i)">
+									<div class="layout">
+										<div class="layout-inner">
+											<span>{{i.title}}</span>
+											<span class="text-muted layout-category">{{i.type}}</span>
 										</div>
 									</div>
 								</div>
