@@ -1,8 +1,12 @@
+html {
+    overflow: auto;
+}
+
 body {
+    overflow: auto;
     filter: invert(85%);
     font-family: 'Roboto';
 }
-
 
 /* Use Roboto font-family */
 .text-mono {
@@ -41,7 +45,7 @@ textarea.source-area {
     font-family: 'Roboto';
 }
 
-/* Undo color inversion */
+/* Undo color some inversions */
 .alert-success {
     background-color: #D2274E;
     color: #000;
@@ -73,4 +77,8 @@ textarea.source-area {
 .navbar-brand-helper {
     font-size: 12px;
     text-transform: none
+}
+
+section {
+    padding: 10px 0px;
 }
