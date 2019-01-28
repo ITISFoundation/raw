@@ -3,6 +3,8 @@ body {
     font-family: 'Roboto';
 }
 
+
+/* Use Roboto font-family */
 .text-mono {
     font-family: 'Roboto';
 }
@@ -11,14 +13,8 @@ body {
     font-family: 'Roboto';
 }
 
-.navbar-brand-helper {
-    font-size: 12px;
-    text-transform: none
-}
-
 .text-clipboard {
     font-family: 'Roboto';
-
 }
 
 .tooltip {
@@ -43,4 +39,38 @@ textarea.source-area {
 
 .CodeMirror {
     font-family: 'Roboto';
+}
+
+/* Undo color inversion */
+.alert-success {
+    background-color: #D2274E;
+    color: #000;
+}
+
+.alert-warning {
+    color: #000;
+    background-color: #058F8F
+}
+
+.alert-loading {
+    color: #BBB;
+    background-color: #001999;
+}
+
+.nav-pills>li.active>a:hover, .nav-pills>li.active>a, .nav-pills>li.active>a:focus {
+    background-color: #F23B5C;
+}
+
+.layout.selected {
+  background-color: #F23B5C;
+}
+
+.dimension {
+    background-color: #F23B5C;
+}
+
+/* class for adding "Powered by" */
+.navbar-brand-helper {
+    font-size: 12px;
+    text-transform: none
 }
