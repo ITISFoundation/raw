@@ -11,6 +11,11 @@ body {
     font-family: 'Roboto';
 }
 
+.navbar-brand-helper {
+    font-size: 12px;
+    text-transform: none
+}
+
 .text-clipboard {
     font-family: 'Roboto';
 
