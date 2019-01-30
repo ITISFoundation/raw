@@ -498,12 +498,11 @@ angular.module('raw.controllers', [])
 
     /* ----------------- osparc ----------------- */
     // $scope.importMode = 'osparc';
-    // $scope.reloadInputs();
 
     $scope.reloadInputs = () => {
       $scope.inputs = [];
       // ask the server about the available files
-      $http.get('/inputs').
+      $http.get('/raw/inputs').
         then(response => {
           const files = response.data;
           for (let i=0; i<files.length; i++) { 
@@ -519,7 +518,7 @@ angular.module('raw.controllers', [])
       // ask the server about the data itself
       $scope.text = "";
       $scope.loading = true;
-      $http.get('/input', {
+      $http.get('/raw/input', {
         params: {
           fileName: input.url
         }
