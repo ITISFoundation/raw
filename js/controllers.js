@@ -4,7 +4,7 @@
 
 angular.module('raw.controllers', [])
 
-  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce) {
+  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce, $location) {
 
     $scope.loading = false;
 
@@ -503,7 +503,7 @@ angular.module('raw.controllers', [])
       $scope.inputs = [];
       // ask the server about the available files
       const endPoint = $location.href+'/inputs';
-      console.log(endPoint);
+      // const endPoint = '/inputs';
       $http.get(endPoint).
         then(response => {
           const files = response.data;
@@ -519,6 +519,7 @@ angular.module('raw.controllers', [])
       }
       // ask the server about the data itself
       const endPoint = $location.href+'/input';
+      // const endPoint = '/input';
       $scope.text = "";
       $scope.loading = true;
       $http.get(endPoint, {
