@@ -502,22 +502,14 @@ angular.module('raw.controllers', [])
     $scope.reloadInputs = () => {
       $scope.inputs = [];
       // ask the server about the available files
-      // let endPoint = $location.href+'/inputs';
-      // endPoint = '/inputs';
-      [
-        '/inputs',
-        '/raw/inputs',
-        $location.absUrl()+'/inputs',
-        $location.absUrl()+'/raw/inputs'
-      ].forEach(endPoint => {
-        $http.get(endPoint).
-          then(response => {
-            const files = response.data;
-            for (let i=0; i<files.length; i++) { 
-              $scope.inputs.push(files[i]);
-            }
-          });
-      }, this);
+      const endPoint = $location.absUrl()+'/inputs';
+      $http.get(endPoint).
+        then(response => {
+          const files = response.data;
+          for (let i=0; i<files.length; i++) { 
+            $scope.inputs.push(files[i]);
+          }
+        });
     }
 
     $scope.selectInput = input => {
@@ -525,7 +517,7 @@ angular.module('raw.controllers', [])
         return;
       }
       // ask the server about the data itself
-      let endPoint = '/input';
+      const endPoint = $location.absUrl()+'/input';
       $scope.text = "";
       $scope.loading = true;
       $http.get(endPoint, {
