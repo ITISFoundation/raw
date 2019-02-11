@@ -502,7 +502,7 @@ angular.module('raw.controllers', [])
     $scope.reloadInputs = () => {
       $scope.inputs = [];
       // ask the server about the available files
-      const endPoint = $location.absUrl()+'/inputs';
+      const endPoint = $location.absUrl()+'inputs';
       $http.get(endPoint).
         then(response => {
           const files = response.data;
@@ -517,7 +517,7 @@ angular.module('raw.controllers', [])
         return;
       }
       // ask the server about the data itself
-      const endPoint = $location.absUrl()+'/input';
+      const endPoint = $location.absUrl()+'input';
       $scope.text = "";
       $scope.loading = true;
       $http.get(endPoint, {
