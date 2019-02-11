@@ -507,8 +507,8 @@ angular.module('raw.controllers', [])
       [
         '/inputs',
         '/raw/inputs',
-        $location.absUrl+'/inputs',
-        $location.absUrl+'/raw/inputs'
+        $location.absUrl()+'/inputs',
+        $location.absUrl()+'/raw/inputs'
       ].forEach(endPoint => {
         $http.get(endPoint).
           then(response => {
