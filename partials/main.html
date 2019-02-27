@@ -160,6 +160,10 @@
 							<div data-ng-show="loading && text.length" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 						</div>
 
+						<div ng-show="!loading && !error && data.length && parsed">
+							<a ng-click="addHeader()">Add header</a>
+						</div>
+
 						<div ng-show="parsed">
 
 							<div class="pull-right">
