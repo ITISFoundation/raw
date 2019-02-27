@@ -308,6 +308,28 @@ angular.module('raw.controllers', [])
       $scope.unstacked = false;
     }
 
+    $scope.addHeader = function() {
+      const parser = raw.parser();
+      parser($scope.text);
+      const delimiter = parser.delimiter;
+      const firstLine = $scope.text.split("\n")[0];
+      const nCols = firstLine.split(delimiter).length;
+      let newHeader = [];
+      for (let i=1; i<nCols+1; i++) {
+        newHeader.push(toLetters(i));
+      }
+      let headerText = newHeader.join(delimiter);
+      headerText += "\n";
+      parseText(headerText + $scope.text);
+    }
+
+    function toLetters(num) {
+      const mod = num % 26;
+      let pow = num / 26 | 0;
+      const out = mod ? String.fromCharCode(64 + mod) : (--pow, 'Z');
+      return pow ? toLetters(pow) + out : out;
+    }
+
 
     function jsonTree(json){
       // mettere try
