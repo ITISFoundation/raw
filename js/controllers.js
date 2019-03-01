@@ -518,7 +518,7 @@ angular.module('raw.controllers', [])
       };
 
 
-    /* ----------------- osparc ----------------- */
+    /* ----------------- OSPARC ----------------- */
     // $scope.importMode = 'osparc';
 
     $scope.reloadInputs = () => {
@@ -554,6 +554,16 @@ angular.module('raw.controllers', [])
         });
     };
 
+    $scope.$watch('svgCode', (oldVal, newVal) =>  {
+      uploadData();
+    });
+
+    function uploadData() {
+      const svgCode = $scope.svgCode;
+      if (svgCode) {
+        console.log(svgCode);
+      }
+    }
 
     /* ----------------- OSPARC ----------------- */
 
