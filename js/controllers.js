@@ -413,7 +413,7 @@ angular.module('raw.controllers', [])
 
         $timeout(function() {
           $scope.charts = raw.charts.values().sort(function (a,b){ return d3.ascending(a.category(),b.category()) || d3.ascending(a.title(),b.title()) })
-          $scope.chart = $scope.charts.filter(d => {return d.title() == 'Scatter Plot'})[0];
+          $scope.chart = $scope.charts.filter(d => {return d.title() == 'Line chart'})[0];
           $scope.model = $scope.chart ? $scope.chart.model() : null;
         });
       } catch(e){
