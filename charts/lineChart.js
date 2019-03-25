@@ -54,10 +54,15 @@
     .title('Margin')
     .defaultValue(40)
 
-  // Margin
+  // Radius
   const dots = chart.number()
     .title('Dot radius')
     .defaultValue(2)
+
+  // Legend width
+  const legendWidth = chart.number()
+    .title('Legend width')
+    .defaultValue(100)
 
   // Chart colors
   const colors = chart.color()
@@ -83,7 +88,6 @@
 
     const w = width() - margin.left;
     const h = height() - margin.bottom;
-    const legend_w = 100;
 
     // Define color scale domain
     // Get the list of all possible values from first element
@@ -93,7 +97,7 @@
 
     // svg size
     selection
-      .attr("width", width()+legend_w)
+      .attr("width", width() + legendWidth())
       .attr("height", height())
 
     const xScale = d3.scaleLinear()
