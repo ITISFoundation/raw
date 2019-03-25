@@ -83,6 +83,7 @@
 
     const w = width() - margin.left;
     const h = height() - margin.bottom;
+    const legend_w = 100;
 
     // Define color scale domain
     // Get the list of all possible values from first element
@@ -92,7 +93,7 @@
 
     // svg size
     selection
-      .attr("width", width())
+      .attr("width", width()+legend_w)
       .attr("height", height())
 
     const xScale = d3.scaleLinear()
@@ -183,5 +184,29 @@
       .style("fill", "none")
       .style("stroke", "#000000")
       .style("shape-rendering", "crispEdges")
+
+
+    // Legend
+    const legendXPos = width();
+    const legendYPos = 20;
+    g.append("g")
+      .attr("class", "legendOrdinal")
+      .attr("transform", "translate("+legendXPos+",+"+legendYPos+")");
+
+    let labels = [];
+    let rgbs = [];
+    traces().forEach(t => {
+      labels.push(t);
+      rgbs.push(colors()(t));
+    });
+    const ordinal = d3.scaleOrdinal()
+      .domain(labels)
+      .range(rgbs);
+
+    const legendOrdinal = d3.legendColor()
+      .scale(ordinal);
+    
+    g.select(".legendOrdinal")
+      .call(legendOrdinal);
   })
 })();
