@@ -88,6 +88,7 @@
 
     const w = width() - margin.left;
     const h = height() - margin.bottom;
+    const xAxisLabelHeight = 35;
 
     // Define color scale domain
     // Get the list of all possible values from first element
@@ -159,6 +160,12 @@
       .style("font-family", "Arial, Helvetica")
       .attr("transform", "translate(" + margin.left + "," + (h*data.length) + ")")
       .call(d3.axisBottom(xScale));
+
+    // text label for the x axis
+    g.append("text")
+      .attr("transform", "translate("+ (width()/2) +","+ (height()-margin.top+xAxisLabelHeight) +")")
+      .style("text-anchor", "middle")
+      .text(x()[0]);
 
     const xAxis = d3.axisBottom(xScale).tickSize(6, -h);
     const yAxis = d3.axisLeft(yScale).ticks(10).tickSize(6, -w);
