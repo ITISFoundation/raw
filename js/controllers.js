@@ -415,6 +415,10 @@ angular.module('raw.controllers', [])
           $scope.charts = raw.charts.values().sort(function (a,b){ return d3.ascending(a.category(),b.category()) || d3.ascending(a.title(),b.title()) })
           $scope.chart = $scope.charts.filter(d => {return d.title() == 'Line chart'})[0];
           $scope.model = $scope.chart ? $scope.chart.model() : null;
+          $scope.model.autoDimensions($scope.metadata);
+          $scope.$apply(function() {
+            console.log("autoDimensions");
+          });
         });
       } catch(e){
         $scope.data = [];
