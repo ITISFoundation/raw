@@ -6,7 +6,6 @@
   let x = model.dimension()
     .title('X Axis')
     .types(Number)
-    .required(true)
 
   let traces = model.dimension('traces')
     .title('Y Axis')
@@ -18,11 +17,16 @@
     if (!traces()) {
       return;
     }
-    return data.map(d => {
+    return data.map((d, idx) => {
       let obj = {
-        x: +x(d),
+        x: {},
         y: {}
       };
+      if (x() === null) {
+        obj['x'] = idx;
+      } else {
+        obj['x'] = +x(d);
+      }
       traces().forEach(t => {
         obj.y[t] = +d[t];
       })
@@ -165,7 +169,7 @@
     g.append("text")
       .attr("transform", "translate("+ (width()/2) +","+ (height()-margin.top+xAxisLabelHeight) +")")
       .style("text-anchor", "middle")
-      .text(x()[0]);
+      .text(x() ? x()[0] : 'x');
 
     const xAxis = d3.axisBottom(xScale).tickSize(6, -h);
     const yAxis = d3.axisLeft(yScale).ticks(10).tickSize(6, -w);
