@@ -54,10 +54,15 @@
     .title('Margin')
     .defaultValue(40)
 
-  // Margin
+  // Radius
   const dots = chart.number()
     .title('Dot radius')
     .defaultValue(2)
+
+  // Legend width
+  const legendWidth = chart.number()
+    .title('Legend width')
+    .defaultValue(100)
 
   // Chart colors
   const colors = chart.color()
@@ -83,6 +88,7 @@
 
     const w = width() - margin.left;
     const h = height() - margin.bottom;
+    const xAxisLabelHeight = 35;
 
     // Define color scale domain
     // Get the list of all possible values from first element
@@ -92,7 +98,7 @@
 
     // svg size
     selection
-      .attr("width", width())
+      .attr("width", width() + legendWidth())
       .attr("height", height())
 
     const xScale = d3.scaleLinear()
@@ -155,6 +161,12 @@
       .attr("transform", "translate(" + margin.left + "," + (h*data.length) + ")")
       .call(d3.axisBottom(xScale));
 
+    // text label for the x axis
+    g.append("text")
+      .attr("transform", "translate("+ (width()/2) +","+ (height()-margin.top+xAxisLabelHeight) +")")
+      .style("text-anchor", "middle")
+      .text(x()[0]);
+
     const xAxis = d3.axisBottom(xScale).tickSize(6, -h);
     const yAxis = d3.axisLeft(yScale).ticks(10).tickSize(6, -w);
 
@@ -183,5 +195,29 @@
       .style("fill", "none")
       .style("stroke", "#000000")
       .style("shape-rendering", "crispEdges")
+
+
+    // Legend
+    const legendXPos = width();
+    const legendYPos = 20;
+    g.append("g")
+      .attr("class", "legendOrdinal")
+      .attr("transform", "translate("+legendXPos+",+"+legendYPos+")");
+
+    let labels = [];
+    let rgbs = [];
+    traces().forEach(t => {
+      labels.push(t);
+      rgbs.push(colors()(t));
+    });
+    const ordinal = d3.scaleOrdinal()
+      .domain(labels)
+      .range(rgbs);
+
+    const legendOrdinal = d3.legendColor()
+      .scale(ordinal);
+    
+    g.select(".legendOrdinal")
+      .call(legendOrdinal);
   })
 })();
